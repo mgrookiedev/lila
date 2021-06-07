@@ -16,12 +16,13 @@ object Room {
   case object Print   extends Room
   case object Playban extends Room
   case object Comm    extends Room
+  case object Stall   extends Room
   case object Other   extends Room
   case object Xfiles extends Room {
     override def name = "X-Files"
   }
 
-  val all: List[Room] = List(Cheat, Boost, Print, Playban, Comm, Other, Xfiles)
+  val all: List[Room] = List(Cheat, Boost, Print, Playban, Comm, Stall, Other, Xfiles)
   val byKey = all map { v =>
     (v.key, v)
   } toMap
@@ -40,6 +41,7 @@ object Room {
       case Reason.AltPrint | Reason.CheatPrint => Print
       case Reason.Playbans                     => Playban
       case Reason.Comm                         => Comm
+      case Reason.Stall                        => Stall
       case Reason.Other                        => Other
     }
 
@@ -50,6 +52,7 @@ object Room {
       case Print   => Set(Reason.AltPrint)
       case Playban => Set(Reason.Playbans)
       case Comm    => Set(Reason.Comm)
+      case Stall   => Set(Reason.Stall)
       case Other   => Set(Reason.Other)
       case Xfiles  => Set.empty
     }
@@ -67,6 +70,7 @@ object Room {
       case Print   => Granter.is(_.Admin)(mod)
       case Playban => Granter.is(_.Admin)(mod)
       case Comm    => Granter.is(_.Shadowban)(mod)
+      case Stall   => Granter.is(_.Shadowban)(mod)
       case Other   => Granter.is(_.Admin)(mod)
       case Xfiles  => Granter.is(_.MarkEngine)(mod)
     }
