@@ -83,6 +83,7 @@ trait SetupHelper { self: I18nHelper =>
       (Reason.Comm.key, trans.insult.txt()),
       (Reason.Boost.key, trans.ratingManipulation.txt()),
       (Reason.Comm.key, trans.troll.txt()),
+      (Reason.Stall.key, trans.stalling.txt()),
       (Reason.Other.key, trans.other.txt())
     )
 
